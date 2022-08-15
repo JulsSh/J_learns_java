@@ -67,7 +67,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\sandbox.jar;%APP_HOME%\lib\testng-7.6.0.jar;%APP_HOME%\lib\jsr305-3.0.2.jar;%APP_HOME%\lib\slf4j-api-1.7.36.jar;%APP_HOME%\lib\jcommander-1.82.jar;%APP_HOME%\lib\jquery-3.6.0.jar
+set CLASSPATH=%APP_HOME%\lib\sandbox.jar
 
 
 @rem Execute sandbox
