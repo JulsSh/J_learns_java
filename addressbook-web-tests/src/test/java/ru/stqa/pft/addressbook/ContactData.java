@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook;
 
-public class ContactsData {
+public class ContactData {
   private final String username;
   private final String middle;
   private final String lastname;
@@ -9,7 +9,7 @@ public class ContactsData {
   private final String phonenum1;
   private final String email1;
 
-  public ContactsData(String username, String middle, String lastname, String comp, String addrr, String phonenum1, String email1) {
+  public ContactData(String username, String middle, String lastname, String comp, String addrr, String phonenum1, String email1) {
     this.username = username;
     this.middle = middle;
     this.lastname = lastname;

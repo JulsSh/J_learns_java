@@ -27,7 +27,7 @@ public class ContactCreationTest {
   public void CreateContactTest() throws Exception {
 
     gotoCreateContactPage();
-    fillContactDetails(new ContactsData("username", "middle", "lastname", "comp", "addrr", "03056789", "julQjul.com"));
+    fillContactDetails(new ContactData("username", "middle", "lastname", "comp", "addrr", "03056789", "julQjul.com"));
     submitContactCreation();
     gotoHomePage();
   }
@@ -40,21 +40,21 @@ public class ContactCreationTest {
     wd.findElement(By.linkText("home page")).click();
   }
 
-  private void fillContactDetails(ContactsData contactsData) {
+  private void fillContactDetails(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).sendKeys(contactsData.getUsername());
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getUsername());
     wd.findElement(By.name("middlename")).click();
-    wd.findElement(By.name("middlename")).sendKeys(contactsData.getMiddle());
+    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddle());
     wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).sendKeys(contactsData.getLastname());
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
     wd.findElement(By.name("company")).click();
-    wd.findElement(By.name("company")).sendKeys(contactsData.getComp());
+    wd.findElement(By.name("company")).sendKeys(contactData.getComp());
     wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).sendKeys(contactsData.getAddrr());
+    wd.findElement(By.name("address")).sendKeys(contactData.getAddrr());
     wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).sendKeys(contactsData.getPhonenum1());
+    wd.findElement(By.name("home")).sendKeys(contactData.getPhonenum1());
     wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).sendKeys(contactsData.getEmail1());
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail1());
   }
 
   private void gotoCreateContactPage() {
