@@ -5,49 +5,28 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-  public WebDriver wd;
+  WebDriver wd;
+  private SessionHelper sessionHelper;
+  private NavigationHelper navigationHelper;
+  private GroupHelper groupHelper;
 
   public void init() {
-    wd = new FirefoxDriver();
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/group.php");
-    login("admin", "secret");
+  wd = new FirefoxDriver();
+  wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  wd.get("http://localhost/addressbook/group.php");
+    groupHelper = new GroupHelper(wd);
+    navigationHelper = new NavigationHelper(wd);
+    sessionHelper= new SessionHelper(wd);
+    sessionHelper.login("admin", "secret");
   }
 
-  private void login(String userName, String userPwd) {
-    wd.findElement(By.name("user")).sendKeys(userName);
-    wd.findElement(By.name("pass")).sendKeys(userPwd);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
-  }
-
-  public void submitGroupCreation() {
-    wd.findElement(By.name("submit")).click();
-  }
-
-  public void fillGroupForm(GroupData groupData) {
-    wd.findElement(By.name("group_name")).click();
-    wd.findElement(By.name("group_name")).sendKeys(groupData.getGroupName());
-    wd.findElement(By.name("group_header")).click();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getGroupHeader());
-    wd.findElement(By.name("group_footer")).click();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
-  }
-
-  public void initGroupCreation() {
-    wd.findElement(By.name("new")).click();
-  }
-
-  public void gotoGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
-  }
 
   public void stop() {
-    wd.quit();
+   wd.quit();
   }
 
   public void logout() {
@@ -72,15 +51,11 @@ public class ApplicationManager {
     }
   }
 
-  public void returnToGroupPage() {
-    wd.findElement(By.linkText("group page")).click();
+  public GroupHelper getGroupHelper() {
+    return groupHelper;
   }
 
-  public void deleteSelectedGroup() {
-    wd.findElement(By.xpath("//input[@name='delete']")).click();
-  }
-
-  public void selectGroup() {
-    wd.findElement(By.xpath("//input[@name='selected[]']")).click();
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
