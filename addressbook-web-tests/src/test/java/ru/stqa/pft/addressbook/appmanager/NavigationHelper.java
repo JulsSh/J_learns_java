@@ -10,6 +10,11 @@ public class NavigationHelper extends HelperBase {
     super(wd);
   }
   public void gotoGroupPage() {
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElementPresent(By.name("new"))){
+      return;
+    }
     click(By.linkText("groups"));
   }
   public void returnToGroupPage() {
@@ -17,15 +22,18 @@ public class NavigationHelper extends HelperBase {
   }
 
   public void returnToHome() {
-    click(By.linkText("home page"));
+    click(By.linkText("group page"));
   }
 
   public void gotoHomePage() {
-    wd.findElement(By.linkText("home")).click();
+    if (isElementPresent(By.id("maintable"))){
+      return;
+    }
+    click(By.linkText("home"));
   }
 
 
   public void gotoCreateContactPage() {
-    wd.findElement(By.linkText("add new")).click();
+   click(By.linkText("add new"));
   }
 }
