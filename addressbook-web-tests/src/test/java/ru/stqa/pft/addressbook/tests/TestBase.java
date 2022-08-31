@@ -8,7 +8,7 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 public class TestBase {
 
   protected final ApplicationManager app = new
-          ApplicationManager(BrowserType.IE);
+          ApplicationManager(BrowserType.EDGE);
 
 
   @BeforeMethod(alwaysRun = true)
