@@ -24,15 +24,13 @@ public class GroupHelper extends  HelperBase
   public void initGroupCreation() {
     click(By.name("new"));
   }
-
-
-
   public void deleteSelectedGroup() {
     click(By.xpath("//input[@name='delete']"));
   }
 
-  public void selectGroup() {
-    click(By.xpath("//input[@name='selected[]']"));
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+    //click(By.xpath("//input[@name='selected[]']"));
   }
 
   public void initModification() {
