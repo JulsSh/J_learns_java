@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
   public boolean acceptNextAlert = true;
 
 
@@ -17,7 +17,8 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@name='submit']"));
   }
 
-  public void fillContactDetails(ContactData contactData, boolean creation) {
+  public void fillContactDetails(ContactData contactData, boolean CreateGroup) {
+
     click(By.name("firstname"));
     type(By.name("firstname"), contactData.getUsername());
     click(By.name("middlename"));
@@ -32,12 +33,12 @@ public class ContactHelper extends HelperBase{
     type(By.name("home"), contactData.getPhonenum1());
     click(By.name("email"));
     type(By.name("email"), contactData.getEmail1());
-      if (creation) {
-        new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
-      } else{
-        Assert.assertFalse(isElementPresent(By.name("new group")));
-      }
-       }
+    if (CreateGroup) {
+      new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new group")));
+    }
+  }
 
   public void deleteContact() {
     click(By.xpath("//input[@value='Delete']"));
@@ -66,19 +67,26 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//img[@alt='Edit']"));
   }
 
+  public void initContactCreation() {
+    click(By.xpath("//a[contains(text(),'add new')]"));
+  }
+
   public void submitContactModification() {
     click(By.xpath("//input[@value='Update']"));
   }
+
   public void gotoHomePage() {
-    if (isElementPresent(By.id("maintable"))){
+    if (isElementPresent(By.id("maintable"))) {
       return;
     }
     click(By.linkText("home"));
   }
+
   public void createContact(ContactData contact) {
-   fillContactDetails(contact, false);
-   submitContactCreation();
-   gotoHomePage();
+    initContactCreation();
+    fillContactDetails(contact, false);
+    submitContactCreation();
+    gotoHomePage();
   }
 
   public boolean isThereAContact() {
