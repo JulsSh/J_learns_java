@@ -18,7 +18,7 @@ public class EditGroupTest extends TestBase {
     List<GroupData> before= app.getGroupHelper().getGroupList();
    // app.getGroupHelper().selectGroup(before.size()-1);
     app.getGroupHelper().initModification();
-    GroupData group= new GroupData(before.get(before.size() -1 ).getId(), "test1", "test2");
+    GroupData group= new GroupData(before.get(before.size() -1 ).getId(), "test1", "test1", "test2");
     app.getGroupHelper().fillGroupForm(group);
     app.getGroupHelper().submitGroupModification();
     app.getNavigationHelper().returnToHome();
