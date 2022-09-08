@@ -9,9 +9,22 @@ public class GroupData {
   private final String groupFooter;
 
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return Objects.equals(groupName, groupData.groupName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(groupName);
+  }
+
   public GroupData(String groupName, String groupHeader,
                    String groupFooter) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.groupName = groupName;
     this.groupHeader = groupHeader;
     this.groupFooter = groupFooter;
@@ -25,19 +38,6 @@ public class GroupData {
     this.groupHeader = groupHeader;
     this.groupFooter = groupFooter;
 
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return id == groupData.id && Objects.equals(groupName, groupData.groupName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, groupName);
   }
 
   @Override
