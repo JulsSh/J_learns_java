@@ -1,6 +1,9 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class ContactData {
+  private int id;
   private final String username;
   private final String middle;
   private final String lastname;
@@ -11,6 +14,7 @@ public class ContactData {
   private final String email1;
 
   public ContactData(String username, String middle, String lastname, String comp, String group, String addrr, String phonenum1, String email1) {
+    this.id=Integer.MAX_VALUE;
     this.username = username;
     this.middle = middle;
     this.lastname = lastname;
@@ -19,6 +23,47 @@ public class ContactData {
     this.addrr = addrr;
     this.phonenum1 = phonenum1;
     this.email1 = email1;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "username='" + username + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  public ContactData(int id, String username, String middle, String lastname, String comp, String group, String addrr, String phonenum1, String email1) {
+    this.id=id;
+    this.username = username;
+    this.middle = middle;
+    this.lastname = lastname;
+    this.comp = comp;
+    this.group = group;
+    this.addrr = addrr;
+    this.phonenum1 = phonenum1;
+    this.email1 = email1;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return Objects.equals(username, that.username) && Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(username, lastname);
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getUsername() {

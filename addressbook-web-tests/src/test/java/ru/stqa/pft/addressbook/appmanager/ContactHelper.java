@@ -1,9 +1,14 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
   public boolean acceptNextAlert = true;
@@ -94,4 +99,16 @@ public class ContactHelper extends HelperBase {
 
   }
 
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts =new ArrayList<ContactData>();
+    List<WebElement> elements =wd.findElements(By.cssSelector("tr[name=entry]"));
+  for (WebElement element : elements) {
+    String username =element.findElement(By.xpath(".//td[3]")).getText();
+    String lastname=element.findElement(By.xpath(".//td[2]")).getText();
+    int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+    ContactData contact = new ContactData(  username, null, lastname, null, null, null, null, null);
+    contacts.add(contact);
+  }
+return contacts;
+  }
 }
