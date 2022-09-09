@@ -49,10 +49,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
-
   public String closeAlertAndGetItsText() {
     try {
       Alert alert = wd.switchTo().alert();
@@ -103,10 +102,10 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts =new ArrayList<ContactData>();
     List<WebElement> elements =wd.findElements(By.cssSelector("tr[name=entry]"));
   for (WebElement element : elements) {
-    String username =element.findElement(By.xpath(".//td[3]")).getText();
     String lastname=element.findElement(By.xpath(".//td[2]")).getText();
+    String username =element.findElement(By.xpath(".//td[3]")).getText();
     int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-    ContactData contact = new ContactData(  username, null, lastname, null, null, null, null, null);
+    ContactData contact = new ContactData(id, username, null, lastname, null, null, null, null, null);
     contacts.add(contact);
   }
 return contacts;
