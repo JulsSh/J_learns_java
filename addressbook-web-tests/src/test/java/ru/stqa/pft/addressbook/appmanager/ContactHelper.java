@@ -1,13 +1,14 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.checkerframework.checker.units.qual.C;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -52,6 +53,11 @@ public class ContactHelper extends HelperBase {
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
+
+  public void initModification(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  }
+
   public String closeAlertAndGetItsText() {
     try {
       Alert alert = wd.switchTo().alert();
@@ -67,9 +73,7 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void initModification() {
-    click(By.xpath("//img[@alt='Edit']"));
-  }
+
 
   public void initContactCreation() {
     click(By.xpath("//a[contains(text(),'add new')]"));
@@ -77,6 +81,9 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactModification() {
     click(By.xpath("//input[@value='Update']"));
+  }
+  public void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();
   }
 
   public void gotoHomePage() {
@@ -87,6 +94,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData contact) {
+
     initContactCreation();
     fillContactDetails(contact, false);
     submitContactCreation();
