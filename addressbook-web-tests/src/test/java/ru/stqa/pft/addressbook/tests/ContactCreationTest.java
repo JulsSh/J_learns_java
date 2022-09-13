@@ -10,14 +10,14 @@ import java.util.List;
 public class ContactCreationTest extends TestBase{
 
 
-  @Test
+  @Test (enabled = false)
   public void CreateContactTest() throws Exception {
 
     app.getContactHelper().gotoHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact =new ContactData("username", "middle", "lastname",
             "comp", "[none]","addrr", "03056789", "julQjul.com");
-    app.getNavigationHelper().gotoCreateContactPage();
+    app.goTo().gotoCreateContactPage();
     app.getContactHelper().createContact(new ContactData("username", "middle", "lastname",
                         "comp", "[none]","addrr", "03056789", "julQjul.com"));
     app.getContactHelper().gotoHomePage();

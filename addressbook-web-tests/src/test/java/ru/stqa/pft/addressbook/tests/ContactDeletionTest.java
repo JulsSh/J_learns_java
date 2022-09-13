@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class ContactDeletionTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactDeletion() throws Exception {
     app.getContactHelper().gotoHomePage();
     if (!app.getContactHelper().isThereAContact()) {
