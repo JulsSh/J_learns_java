@@ -3,6 +3,14 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupData {
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id=" + id +
+            ", groupName='" + groupName + '\'' +
+            '}';
+  }
+
   private  int id=Integer.MAX_VALUE;
   private  String groupName;
   private  String groupHeader;
@@ -27,14 +35,6 @@ public class GroupData {
      return this;
   }
 
-
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "id='" + id + '\'' +
-            ", groupName='" + groupName + '\'' +
-            '}';
-  }
 
   public int getId() {
     return id;

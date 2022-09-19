@@ -22,21 +22,6 @@ public class ContactData {
   }
 
 
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return Objects.equals(username, that.username) && Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(username, lastname);
-  }
-
   public int getId() {
     return id;
   }
@@ -76,6 +61,19 @@ public class ContactData {
   public ContactData withId(int id) {
     this.id = id;
     return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id && Objects.equals(username, that.username);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, username);
   }
 
   public ContactData withUsername(String username) {

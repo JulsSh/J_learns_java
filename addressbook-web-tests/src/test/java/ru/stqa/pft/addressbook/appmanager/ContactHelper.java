@@ -7,9 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
   public boolean acceptNextAlert = true;
@@ -50,12 +52,13 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactbyId(int id) {
+
+    wd.findElement(By.cssSelector("input[value='" +id +"']")).click();
   }
 
   public void initModification(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    wd.findElement(By.xpath("//img[@alt='Edit']")).click();
   }
 
   public String closeAlertAndGetItsText() {
@@ -78,7 +81,6 @@ public class ContactHelper extends HelperBase {
   public void initContactCreation() {
     click(By.xpath("//a[contains(text(),'add new')]"));
   }
-
   public void submitContactModification() {
     click(By.xpath("//input[@value='Update']"));
   }
@@ -94,37 +96,41 @@ public class ContactHelper extends HelperBase {
   }
 
   public void create(ContactData contact) {
-
     initContactCreation();
     fillContactDetails(contact, false);
     submitContactCreation();
     homePage();
   }
-  public void modify(int index, ContactData contact) {
-   initModification(index);
+  public void modify( ContactData contact) {
+   initModification(contact.getId());
    fillContactDetails(contact, false);
    submitContactModification();
    returnToHomePage();
   }
-  public void delete(int index) {
+
+
+  public void delete(ContactData contact) {
     homePage();
-    selectContact(index);
+    selectContactbyId(contact.getId());
     delete();
     acceptNextAlert = true;
     closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$");
     homePage();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts =new ArrayList<ContactData>();
+
+  public Contacts all() {
+    Contacts contacts =new Contacts();
     List<WebElement> elements =wd.findElements(By.cssSelector("tr[name=entry]"));
-  for (WebElement element : elements) {
-    String lastname=element.findElement(By.xpath(".//td[2]")).getText();
-    String username =element.findElement(By.xpath(".//td[3]")).getText();
-    int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-    ContactData contact = new ContactData().withId(id).withUsername(username).withLastname(lastname);
-    contacts.add(contact);
+    for (WebElement element : elements) {
+      String username =element.findElement(By.xpath(".//td[3]")).getText();
+      String lastname=element.findElement(By.xpath(".//td[2]")).getText();
+      int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData().withId(id).withUsername(username).withLastname(lastname);
+      contacts.add(contact);
+    }
+    return contacts;
   }
-return contacts;
-  }
+
+
 }
