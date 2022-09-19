@@ -46,7 +46,7 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void deleteContact() {
+  public void delete() {
     click(By.xpath("//input[@value='Delete']"));
   }
 
@@ -86,34 +86,43 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.linkText("home page")).click();
   }
 
-  public void gotoHomePage() {
+  public void homePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
     click(By.linkText("home"));
   }
 
-  public void createContact(ContactData contact) {
+  public void create(ContactData contact) {
 
     initContactCreation();
     fillContactDetails(contact, false);
     submitContactCreation();
-    gotoHomePage();
+    homePage();
+  }
+  public void modify(int index, ContactData contact) {
+   initModification(index);
+   fillContactDetails(contact, false);
+   submitContactModification();
+   returnToHomePage();
+  }
+  public void delete(int index) {
+    homePage();
+    selectContact(index);
+    delete();
+    acceptNextAlert = true;
+    closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$");
+    homePage();
   }
 
-  public boolean isThereAContact() {
-    return isElementPresent(By.name("selected[]"));
-
-  }
-
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts =new ArrayList<ContactData>();
     List<WebElement> elements =wd.findElements(By.cssSelector("tr[name=entry]"));
   for (WebElement element : elements) {
     String lastname=element.findElement(By.xpath(".//td[2]")).getText();
     String username =element.findElement(By.xpath(".//td[3]")).getText();
     int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-    ContactData contact = new ContactData(id, username, null, lastname, null, null, null, null, null);
+    ContactData contact = new ContactData().withId(id).withUsername(username).withLastname(lastname);
     contacts.add(contact);
   }
 return contacts;

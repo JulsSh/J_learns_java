@@ -7,41 +7,40 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.testng.Assert.*;
-
 public class ContactDeletionTest extends TestBase {
-
-  @Test(enabled = false)
-  public void testContactDeletion() throws Exception {
-    app.getContactHelper().gotoHomePage();
-    if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("username", "middle", "lastname", "comp", "[none]", "addrr", "03056789", "julQjul.com"));
+@BeforeMethod
+public void ensurePreconditions(){
+        app.contact().homePage();
+    if (app.contact().list().size()==0) {
+    app.contact().create(new ContactData().withUsername("username").withMiddle("middle").withLastname("lastname")
+            .withComp("comp").withGroup("[none]").withAddrr("addrr").withPhonenum1("03056789").withEmail1("julQjul.com"));
+  }
     }
-    app.getContactHelper().gotoHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    ContactData contact = new ContactData("username", "middle", "lastname",
-            "comp", "[none]", "addrr", "03056789", "julQjul.com");
 
-    app.getContactHelper().gotoHomePage();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.getContactHelper().deleteContact();
-    app.getContactHelper().acceptNextAlert = true;
-    app.getContactHelper().closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$");
-    app.getContactHelper().gotoHomePage();
+  @Test
+  public void testContactDeletion() throws Exception {
 
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().homePage();
+    List<ContactData> before = app.contact().list();
+    ContactData contact = new ContactData().withUsername("username").withMiddle("middle").withLastname("lastname")
+            .withComp("comp").withGroup("[none]").withAddrr("addrr").withPhonenum1("03056789").withEmail1("julQjul.com");
+int index=before.size() - 1;
+    app.contact().delete(index);
+
+    List<ContactData> after = app.contact().list();
 
 
-    Assert.assertEquals(after.size(), before.size() - 1);
+    Assert.assertEquals(after.size(), index);
 
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-
 
 
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
   }
+
+
 
 
 }

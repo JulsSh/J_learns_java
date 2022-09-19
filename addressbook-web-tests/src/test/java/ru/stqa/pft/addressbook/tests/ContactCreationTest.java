@@ -10,20 +10,20 @@ import java.util.List;
 public class ContactCreationTest extends TestBase{
 
 
-  @Test (enabled = false)
+  @Test
   public void CreateContactTest() throws Exception {
 
-    app.getContactHelper().gotoHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    ContactData contact =new ContactData("username", "middle", "lastname",
-            "comp", "[none]","addrr", "03056789", "julQjul.com");
-    app.goTo().gotoCreateContactPage();
-    app.getContactHelper().createContact(new ContactData("username", "middle", "lastname",
-                        "comp", "[none]","addrr", "03056789", "julQjul.com"));
-    app.getContactHelper().gotoHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().homePage();
+    List<ContactData> before = app.contact().list();
+    ContactData contact =new ContactData().withUsername("username").withMiddle("middle").withLastname("lastname")
+            .withComp("comp").withGroup("[none]").withAddrr("addrr").withPhonenum1("03056789").withEmail1("julQjul.com");
+    app.goTo().createNew();
+    app.contact().create(new ContactData().withUsername("username").withMiddle("middle").withLastname("lastname")
+            .withComp("comp").withGroup("[none]").withAddrr("addrr").withPhonenum1("03056789").withEmail1("julQjul.com"));
+    app.contact().homePage();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size()+1);
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contact);
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(byId);

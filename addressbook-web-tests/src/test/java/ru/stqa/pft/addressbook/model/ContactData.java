@@ -3,27 +3,15 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String username;
-  private final String middle;
-  private final String lastname;
-  private final String comp;
+  private int id=Integer.MAX_VALUE;
+  private String username;
+  private String middle;
+  private String lastname;
+  private String comp;
   private String group;
-  private final String addrr;
-  private final String phonenum1;
-  private final String email1;
-
-  public ContactData(String username, String middle, String lastname, String comp, String group, String addrr, String phonenum1, String email1) {
-    this.id=Integer.MAX_VALUE;
-    this.username = username;
-    this.middle = middle;
-    this.lastname = lastname;
-    this.comp = comp;
-    this.group = group;
-    this.addrr = addrr;
-    this.phonenum1 = phonenum1;
-    this.email1 = email1;
-  }
+  private String addrr;
+  private String phonenum1;
+  private String email1;
 
   @Override
   public String toString() {
@@ -33,21 +21,8 @@ public class ContactData {
             '}';
   }
 
-  public ContactData(int id, String username, String middle, String lastname, String comp, String group, String addrr, String phonenum1, String email1) {
-    this.id=id;
-    this.username = username;
-    this.middle = middle;
-    this.lastname = lastname;
-    this.comp = comp;
-    this.group = group;
-    this.addrr = addrr;
-    this.phonenum1 = phonenum1;
-    this.email1 = email1;
-  }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -97,4 +72,50 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withUsername(String username) {
+    this.username = username;
+    return this;
+  }
+
+  public ContactData withMiddle(String middle) {
+    this.middle = middle;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withComp(String comp) {
+    this.comp = comp;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withAddrr(String addrr) {
+    this.addrr = addrr;
+    return this;
+  }
+
+  public ContactData withPhonenum1(String phonenum1) {
+    this.phonenum1 = phonenum1;
+    return this;
+  }
+
+  public ContactData withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
 }
+
