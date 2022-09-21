@@ -15,9 +15,22 @@ public class ContactData {
   private String phonenum2;
   private String phonenum3;
   private String sec_phonehone4;
-  private String email1;
+  private String allPhones;
+    private String email1;
   private String email2;
   private String email3;
+  private String allEmails;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
 
   public int getId() {
     return id;
@@ -131,6 +144,14 @@ public class ContactData {
     this.email3 = email3;
     return this;
   }
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+  public ContactData setAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   @Override
   public String toString() {
@@ -153,10 +174,6 @@ public class ContactData {
   public int hashCode() {
     return Objects.hash(id, username, lastname);
   }
-
-
-
-
 }
 
 
