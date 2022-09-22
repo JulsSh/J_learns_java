@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
-import java.security.PrivateKey;
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -16,42 +16,39 @@ public class ContactData {
   private String phonenum3;
   private String sec_phonehone4;
   private String allPhones;
-    private String email1;
+  private String email1;
   private String email2;
   private String email3;
   private String allEmails;
+  private File photo;
+
+  public File getPhoto() {
+    return photo;
+  }
+
+
 
   public String getAllPhones() {
     return allPhones;
   }
-
-
-
   public String getAllEmails() {
     return allEmails;
   }
-
-
   public int getId() {
     return id;
   }
-
   public String getUsername() {
     return username;
   }
-
   public String getMiddle() {
     return middle;
   }
-
   public String getLastname() {
     return lastname;
   }
-
   public String getComp() {
     return comp;
   }
-
   public String getAddrr() {
     return addrr;
   }
@@ -63,7 +60,6 @@ public class ContactData {
   public String getEmail1() {    return email1;  }
 
   public String getEmail2() {    return email2;  }
-
 
   public String getEmail3() {    return email3;  }
 
@@ -153,6 +149,10 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
   @Override
   public String toString() {
     return "ContactData{" +

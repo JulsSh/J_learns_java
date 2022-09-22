@@ -25,26 +25,21 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactDetails(ContactData contactData, boolean CreateGroup) {
 
-    click(By.name("firstname"));
+
     type(By.name("firstname"), contactData.getUsername());
-    click(By.name("middlename"));
     type(By.name("middlename"), contactData.getMiddle());
-    click(By.name("lastname"));
     type(By.name("lastname"), contactData.getLastname());
-    click(By.name("company"));
     type(By.name("company"), contactData.getComp());
-    click(By.name("address"));
     type(By.name("address"), contactData.getAddrr());
-    click(By.name("home"));
     type(By.name("home"), contactData.getPhonenum1());
-    click(By.name("email"));
     type(By.name("email"), contactData.getEmail1());
+    attach(By.name("photo"), contactData.getPhoto());
     if (CreateGroup) {
       new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new group")));
     }
-    new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
+    //new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
   }
 
   public void delete() {
