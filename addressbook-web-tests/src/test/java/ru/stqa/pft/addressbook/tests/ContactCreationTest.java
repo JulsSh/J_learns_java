@@ -12,6 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTest extends TestBase{
 
   @Test
+
   public void CreateContactTest() throws Exception {
     app.contact().homePage();
     app.goTo().createNew();
