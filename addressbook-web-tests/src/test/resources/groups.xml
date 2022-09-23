@@ -1,0 +1,17 @@
+<list>
+  <group>
+    <groupName>test 0</groupName>
+    <groupHeader>test 0</groupHeader>
+    <groupFooter>test 0</groupFooter>
+  </group>
+  <group>
+    <groupName>test 1</groupName>
+    <groupHeader>test 1</groupHeader>
+    <groupFooter>test 1</groupFooter>
+  </group>
+  <group>
+    <groupName>test 2</groupName>
+    <groupHeader>test 2</groupHeader>
+    <groupFooter>test 2</groupFooter>
+  </group>
+</list>
