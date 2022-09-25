@@ -25,7 +25,6 @@ public class GroupDataGenerator {
 public String format;
 
   public static void main (String[] args) throws IOException {
-
     GroupDataGenerator generator=new GroupDataGenerator();
        JCommander jCommander=new JCommander(generator);
     try {

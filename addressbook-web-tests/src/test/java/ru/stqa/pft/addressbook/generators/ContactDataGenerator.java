@@ -84,7 +84,7 @@ public class ContactDataGenerator {
               .withComp(String.format("company %s", i)).withGroup("[none]").withAddrr(String.format("address %s", i)).withPhonenum1(String.format("1111" +"%s", i))
               .withPhonenum2(String.format("2222" + "%s", i)).withPhonenum3(String.format("33333 %s", i)).withSec_phone4(String.format("4444 %s", i))
               .withEmail1(String.format("%s" + "email@yahoo.com", i)).withEmail2(String.format("%s" + "email@yahoo.com", i))
-              .withEmail3(String.format("%s" + "email+@yahoo.com", i)));
+              .withEmail3(String.format("%s" + "email@yahoo.com", i)));
     }
     return contacts;
   }

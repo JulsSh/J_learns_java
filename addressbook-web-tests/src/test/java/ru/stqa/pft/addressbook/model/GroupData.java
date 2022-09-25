@@ -8,13 +8,7 @@ import java.util.Objects;
 @XStreamAlias("group")
 public class GroupData {
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "id=" + id +
-            ", groupName='" + groupName + '\'' +
-            '}';
-  }
+
   @XStreamOmitField
   private  int id=Integer.MAX_VALUE;
   @Expose
@@ -68,7 +62,13 @@ public class GroupData {
     GroupData groupData = (GroupData) o;
     return id == groupData.id && Objects.equals(groupName, groupData.groupName);
   }
-
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id=" + id +
+            ", groupName='" + groupName + '\'' +
+            '}';
+  }
   @Override
   public int hashCode() {
     return Objects.hash(id, groupName);
