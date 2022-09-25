@@ -144,6 +144,27 @@ public class ContactData {
     this.allPhones = allPhones;
     return this;
   }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", middle='" + middle + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", comp='" + comp + '\'' +
+            ", group='" + group + '\'' +
+            ", addrr='" + addrr + '\'' +
+            ", phonenum1='" + phonenum1 + '\'' +
+            ", phonenum2='" + phonenum2 + '\'' +
+            ", phonenum3='" + phonenum3 + '\'' +
+            ", sec_phonehone4='" + sec_phonehone4 + '\'' +
+            ", email1='" + email1 + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            '}';
+  }
+
   public ContactData setAllEmails(String allEmails) {
     this.allEmails = allEmails;
     return this;
@@ -152,14 +173,6 @@ public class ContactData {
   public ContactData withPhoto(File photo) {
     this.photo = photo;
     return this;
-  }
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", username='" + username + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
   }
 
   @Override

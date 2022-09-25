@@ -155,4 +155,7 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.xpath(String.format("//tr[.//input[value='%s']/td[8]/a", id))).click();
     //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
