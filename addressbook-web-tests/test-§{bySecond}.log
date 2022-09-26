@@ -4135,3 +4135,45 @@ java.lang.Exception: exception just for purpose of providing stack trace
 714  [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.1.0.Final}
 718  [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
 718  [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+281  [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\juliias\AppData\Local\JetBrains\IdeaIC2021.1\temp-testng-customsuite.xml"
+534  [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE HbConnectionTest.setUp()[pri:0, instance:null] -920060362
+534  [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+538  [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+538  [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+538  [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+546  [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE HbConnectionTest.tesHbConnection()[pri:0, instance:ru.stqa.pft.addressbook.tests.HbConnectionTest@d9345cd] 300560222
+546  [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+546  [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+546  [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+546  [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+550  [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\juliias\AppData\Local\JetBrains\IdeaIC2021.1\temp-testng-customsuite.xml
+
+625  [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+649  [main] DEBUG o.h.i.i.IntegratorServiceImpl - Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+649  [main] DEBUG o.h.i.i.IntegratorServiceImpl - Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+653  [main] DEBUG o.h.i.i.IntegratorServiceImpl - Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+733  [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.1.0.Final}
+741  [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+742  [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+253  [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\juliias\AppData\Local\JetBrains\IdeaIC2021.1\temp-testng-customsuite.xml"
+470  [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE HbConnectionTest.setUp()[pri:0, instance:null] -920060362
+470  [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+474  [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+474  [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+474  [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+478  [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE HbConnectionTest.tesHbConnection()[pri:0, instance:ru.stqa.pft.addressbook.tests.HbConnectionTest@5e600dd5] 1656158054
+478  [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+482  [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+482  [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+482  [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+486  [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\juliias\AppData\Local\JetBrains\IdeaIC2021.1\temp-testng-customsuite.xml
+
+529  [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+545  [main] DEBUG o.h.i.i.IntegratorServiceImpl - Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+549  [main] DEBUG o.h.i.i.IntegratorServiceImpl - Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+550  [main] DEBUG o.h.i.i.IntegratorServiceImpl - Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+607  [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.1.0.Final}
+607  [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+611  [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
