@@ -2,34 +2,52 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
+
 @XStreamAlias("contact")
+@Entity
+@Table(name="addressbook")
 
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name="id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name="firstname")
   private String username;
-  @Expose
+
   private String middle;
-  @Expose
+
+  @Column(name="lastname")
   private String lastname;
-  @Expose
+
   private String comp;
 
+  @Transient
   private String group;
-  @Expose
+
   private String addrr;
-  @Expose
+
+  @Column(name ="home")
+  @Type(type ="text")
   private String phonenum1;
-  @Expose
+
+  @Column(name="mobile")
+  @Type(type="text")
   private String phonenum2;
-  @Expose
+
+
+  @Type(type="text")
+  @Column(name="work")
   private String phonenum3;
-  @Expose
+
   private String sec_phonehone4;
   private String allPhones;
   @Expose
@@ -39,10 +57,11 @@ public class ContactData {
   @Expose
   private String email3;
   private String allEmails;
-  private File photo;
+  @Column(name="photo")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
 
@@ -190,7 +209,7 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
