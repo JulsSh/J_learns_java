@@ -27,8 +27,7 @@ public class ContactData {
   @Column(name="lastname")
   private String lastname;
 
-  @Column(name ="company")
-  @Type(type ="text")
+@Transient
   private String comp;
 
   @Transient
@@ -56,7 +55,7 @@ public class ContactData {
   private String allPhones;
 
   @Expose
-  @Column(name="email1")
+  @Column(name="email")
   @Type(type="text")
   private String email1;
   @Expose
