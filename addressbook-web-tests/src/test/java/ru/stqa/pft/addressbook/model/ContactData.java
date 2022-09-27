@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
-@Entity(name="addressbook")
+@Entity
 @Table(name="addressbook")
 
 public class ContactData {
@@ -21,19 +21,21 @@ public class ContactData {
   @Expose
   @Column(name="firstname")
   private String username;
-
+  @Column(name="middlename")
   private String middle;
 
   @Column(name="lastname")
   private String lastname;
 
-  @Column(name="company")
-  @Type(type="text")
+  @Column(name ="company")
+  @Type(type ="text")
   private String comp;
 
   @Transient
   private String group;
- @Transient
+  @Column(name ="address")
+  @Type(type ="text")
+
   private String addrr;
 
   @Column(name ="home")
@@ -44,34 +46,39 @@ public class ContactData {
   @Type(type="text")
   private String phonenum2;
 
-
-  @Type(type="text")
   @Column(name="work")
+  @Type(type="text")
   private String phonenum3;
-
+  @Transient
   private String sec_phonehone4;
   @Transient
 
   private String allPhones;
+
   @Expose
+  @Column(name="email1")
+  @Type(type="text")
   private String email1;
   @Expose
+  @Type(type="text")
+  @Column(name="email2")
   private String email2;
   @Expose
+  @Type(type="text")
+  @Column(name="email3")
   private String email3;
-  @Transient
 
+  @Transient
   private String allEmails;
+
   @Column(name="photo")
+  @Type(type ="text")
   private String photo;
 
   public File getPhoto() {
     return new File(photo);
   }
-
-
-
-  public String getAllPhones() {
+ public String getAllPhones() {
     return allPhones;
   }
   public String getAllEmails() {
