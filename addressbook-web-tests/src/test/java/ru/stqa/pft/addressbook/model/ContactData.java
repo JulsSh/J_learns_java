@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
@@ -11,7 +10,7 @@ import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
-@Entity
+@Entity(name="addressbook")
 @Table(name="addressbook")
 
 public class ContactData {
@@ -28,11 +27,13 @@ public class ContactData {
   @Column(name="lastname")
   private String lastname;
 
+  @Column(name="company")
+  @Type(type="text")
   private String comp;
 
   @Transient
   private String group;
-
+ @Transient
   private String addrr;
 
   @Column(name ="home")
@@ -49,6 +50,8 @@ public class ContactData {
   private String phonenum3;
 
   private String sec_phonehone4;
+  @Transient
+
   private String allPhones;
   @Expose
   private String email1;
@@ -56,6 +59,8 @@ public class ContactData {
   private String email2;
   @Expose
   private String email3;
+  @Transient
+
   private String allEmails;
   @Column(name="photo")
   private String photo;

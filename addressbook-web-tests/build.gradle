@@ -14,7 +14,9 @@ dependencies {
     implementation 'io.github.jglrxavpok.hephaistos:gson:2.5.1'
     implementation 'ch.qos.logback:logback-classic:1.4.1'
     implementation 'mysql:mysql-connector-java:8.0.30'
-    implementation 'org.hibernate:hibernate-core:5.1.0.Final'
+    implementation 'org.hibernate:hibernate-core:5.6.11.Final'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
+    implementation 'jakarta.xml.blind:jakarta.xml.bind-api:2.3.2'
 
 }
 task testGroups(type: Test) {

@@ -10,9 +10,8 @@ import javax.persistence.Id;
 import java.util.Objects;
 @XStreamAlias("group")
 @Entity(name="group_list")
+
 public class GroupData {
-
-
   @XStreamOmitField
   @Id
   @Column(name="group_id")
