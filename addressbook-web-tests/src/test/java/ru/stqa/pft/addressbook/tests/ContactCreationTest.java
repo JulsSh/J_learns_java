@@ -2,15 +2,16 @@ package ru.stqa.pft.addressbook.tests;
 
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.json.TypeToken;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,17 +54,14 @@ public class ContactCreationTest extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void CreateContactTest(ContactData contact) throws Exception {
-
     app.contact().homePage();
-    Contacts before = app.contact().all();
-    //File photo=new File("src/test/resources/photo.jpg");
+    Contacts before = app.db().contacts();
+    File photo=new File("src/test/resources/photo.jpg");
     app.contact().create(contact);
-
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
-    //contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
-    assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+    Contacts after = app.db().contacts();
+   //contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
+    assertThat(after, equalTo(before));
 
 
   }

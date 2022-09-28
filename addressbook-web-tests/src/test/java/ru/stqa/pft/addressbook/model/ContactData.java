@@ -27,8 +27,8 @@ public class ContactData {
   @Column(name="lastname")
   private String lastname;
 
-@Transient
-  private String comp;
+  @Column(name ="company")
+    private String comp;
 
   @Transient
   private String group;
@@ -229,12 +229,12 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(username, that.username) && Objects.equals(lastname, that.lastname);
+    return id == that.id && Objects.equals(username, that.username) && Objects.equals(middle, that.middle) && Objects.equals(lastname, that.lastname) && Objects.equals(comp, that.comp) && Objects.equals(addrr, that.addrr) && Objects.equals(phonenum1, that.phonenum1) && Objects.equals(phonenum2, that.phonenum2) && Objects.equals(phonenum3, that.phonenum3) && Objects.equals(email1, that.email1) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, lastname);
+    return Objects.hash(id, username, middle, lastname, comp, addrr, phonenum1, phonenum2, phonenum3, email1, email2, email3);
   }
 }
 

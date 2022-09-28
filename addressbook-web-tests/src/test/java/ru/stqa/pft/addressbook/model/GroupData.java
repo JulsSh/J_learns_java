@@ -8,9 +8,11 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 @XStreamAlias("group")
-@Entity(name="group_list")
+@Entity
+@Table(name="group_list")
 
 public class GroupData {
   @XStreamOmitField
@@ -20,7 +22,7 @@ public class GroupData {
   private  int id=Integer.MAX_VALUE;
   @Expose
   @Column(name="group_name")
-  @Type(type="text")
+
   private  String groupName;
   @Expose
   @Column(name="group_header")
@@ -74,18 +76,23 @@ public class GroupData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
-    return id == groupData.id && Objects.equals(groupName, groupData.groupName);
+    return id == groupData.id && Objects.equals(groupName, groupData.groupName) && Objects.equals(groupHeader, groupData.groupHeader) && Objects.equals(groupFooter, groupData.groupFooter);
   }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, groupName, groupHeader, groupFooter);
+  }
+
   @Override
   public String toString() {
     return "GroupData{" +
             "id=" + id +
             ", groupName='" + groupName + '\'' +
+            ", groupHeader='" + groupHeader + '\'' +
+            ", groupFooter='" + groupFooter + '\'' +
             '}';
   }
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, groupName);
-  }
+
 }
 
