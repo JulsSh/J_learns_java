@@ -8,15 +8,21 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class TestBase {
 
   protected static ApplicationManager app;
-  Logger logger= (Logger) LoggerFactory.getLogger(TestBase.class);
+  Logger logger = (Logger) LoggerFactory.getLogger(TestBase.class);
 
   static {
     try {
@@ -36,7 +42,7 @@ public class TestBase {
   @AfterSuite
   public void tearDown() throws Exception {
     app.stop();
-     }
+  }
 
   public ApplicationManager getApp() {
     return app;
@@ -44,12 +50,22 @@ public class TestBase {
 
   @BeforeMethod
   public void logTestStart(Method m, Object[] p) {
-    logger.info("Start test " +m.getName() + " with parameters"+ Arrays.asList(p));
+    logger.info("Start test " + m.getName() + " with parameters" + Arrays.asList(p));
 
   }
 
   @AfterMethod(alwaysRun = true)
   public void logTestStop(Method m) {
-    logger.info("Stop test " +m.getName());
+    logger.info("Stop test " + m.getName());
+  }
+
+  public void verifyGroupListInUi() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Groups bdGroups = app.db().groups();
+      Groups uiGroups = app.group().all();
+      assertThat(uiGroups, equalTo(bdGroups.stream().map((g) -> new GroupData()
+              .withId(g.getId()).withName(g.getGroupName()))
+              .collect(Collectors.toSet())));
+    }
   }
 }

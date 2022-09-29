@@ -98,27 +98,17 @@ public class ContactData {
   public String getComp() {
     return comp;
   }
-  public String getAddrr() {
-    return addrr;
-  }
-
+  public String getAddrr() {    return addrr;  }
   public String getPhonenum1() {
     return phonenum1;
   }
-
-  public String getEmail1() {    return email1;  }
-
-  public String getEmail2() {    return email2;  }
-
-  public String getEmail3() {    return email3;  }
-
-  public String getGroup() {    return group;  }
-
-  public String getPhonenum2() {    return phonenum2;  }
-
+ public String getPhonenum2() {    return phonenum2;  }
   public String getPhonenum3() {    return phonenum3;  }
-
   public String getSec_phonehone4() {    return sec_phonehone4;  }
+  public String getEmail1() {    return email1;  }
+  public String getEmail2() {    return email2;  }
+  public String getEmail3() {    return email3;  }
+  public String getGroup() {    return group;  }
 
 
   public ContactData withId(int id) {

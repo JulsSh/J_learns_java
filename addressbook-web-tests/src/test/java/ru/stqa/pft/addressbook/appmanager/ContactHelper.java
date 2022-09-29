@@ -32,7 +32,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("company"), contactData.getComp());
     type(By.name("address"), contactData.getAddrr());
     type(By.name("home"), contactData.getPhonenum1());
+    type(By.name("mobile"), contactData.getPhonenum2());
+    type(By.name("work"), contactData.getPhonenum3());
     type(By.name("email"), contactData.getEmail1());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
     //attach(By.name("photo"), contactData.getPhoto());
     if (CreateGroup) {
       new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
@@ -131,7 +135,9 @@ public class ContactHelper extends HelperBase {
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
     String username= wd.findElement(By.name("firstname")).getAttribute("value");
+    String middlename =wd.findElement(By.name("middle")).getAttribute("value");
     String lastname= wd.findElement(By.name("lastname")).getAttribute("value");
+    String company =wd.findElement(By.name("company")).getAttribute("value");
     String addr =wd.findElement(By.name("address")).getAttribute("value");
     String phone1home= wd.findElement(By.name("home")).getAttribute("value");
     String phone2mobile= wd.findElement(By.name("mobile")).getAttribute("value");
@@ -141,8 +147,8 @@ public class ContactHelper extends HelperBase {
     String email2= wd.findElement(By.name("email2")).getAttribute("value");
     String email3= wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new ContactData().withId(contact.getId()).withUsername(username).withLastname(lastname)
-            .withAddrr(addr)
+    return new ContactData().withId(contact.getId()).withUsername(username).withMiddle(middlename).withLastname(lastname)
+            .withAddrr(addr).withComp(company)
             .withPhonenum1(phone1home).withPhonenum2(phone2mobile).withPhonenum3(phone3work)
             .withSec_phone4(phone4Homesec).withEmail1(email1).withEmail2(email2).withEmail3(email3);
   }

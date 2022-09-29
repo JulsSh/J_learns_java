@@ -58,10 +58,12 @@ public class ContactCreationTest extends TestBase {
     Contacts before = app.db().contacts();
     File photo=new File("src/test/resources/photo.jpg");
     app.contact().create(contact);
-    assertThat(app.contact().count(), equalTo(before.size() + 1));
+
     Contacts after = app.db().contacts();
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
    //contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
-    assertThat(after, equalTo(before));
+    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) ->
+    c.getId()).max().getAsInt()))));
 
 
   }

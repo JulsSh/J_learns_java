@@ -7,9 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -82,7 +80,7 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withUsername(String.format("username %s", i)).withMiddle(String.format("middle %s", i)).withLastname(String.format("lastname %s", i))
-              .withComp(String.format("company %s", i)).withGroup("[none]").withAddrr(String.format("address %s", i)).withPhonenum1(String.format("1111" +"%s", i))
+              .withComp(String.format("company %s", i)).withAddrr(String.format("address %s", i)).withPhonenum1(String.format("1111" +"%s", i))
               .withPhonenum2(String.format("2222" + "%s", i)).withPhonenum3(String.format("33333 %s", i)).withSec_phone4(String.format("4444 %s", i))
               .withEmail1(String.format("%s" + "email@yahoo.com", i)).withEmail2(String.format("%s" + "email@yahoo.com", i))
               .withEmail3(String.format("%s" + "email@yahoo.com", i)));
