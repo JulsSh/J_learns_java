@@ -39,7 +39,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("email3"), contactData.getEmail3());
     //attach(By.name("photo"), contactData.getPhoto());
     if (CreateGroup) {
-      new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
+      if(contactData.getGroups().size()>0){
+        Assert.assertTrue(contactData.getGroups().size()==1);
+        new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroups().iterator().next().getGroupName());
+      }
+
     } else {
       Assert.assertFalse(isElementPresent(By.name("new group")));
     }
@@ -95,7 +99,7 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact) {
     initContactCreation();
-    fillContactDetails(contact, false);
+    fillContactDetails(contact, true);
     submitContactCreation();
     homePage();
   }

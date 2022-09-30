@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -29,9 +31,7 @@ public class ContactData {
 
   @Column(name ="company")
     private String comp;
-
-  @Transient
-  private String group;
+;
   @Column(name ="address")
   @Type(type ="text")
 
@@ -74,6 +74,16 @@ public class ContactData {
   @Type(type ="text")
   private String photo;
 
+@ManyToMany(fetch= FetchType.EAGER)
+@JoinTable(name="address_in_groups",
+        joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name="group_id"))
+
+  private Set<GroupData> groups= new HashSet<GroupData>();
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+
   public File getPhoto() {
     return new File(photo);
   }
@@ -108,7 +118,7 @@ public class ContactData {
   public String getEmail1() {    return email1;  }
   public String getEmail2() {    return email2;  }
   public String getEmail3() {    return email3;  }
-  public String getGroup() {    return group;  }
+
 
 
   public ContactData withId(int id) {
@@ -136,10 +146,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
 
   public ContactData withAddrr(String addrr) {
     this.addrr = addrr;
@@ -192,7 +198,7 @@ public class ContactData {
             ", middle='" + middle + '\'' +
             ", lastname='" + lastname + '\'' +
             ", comp='" + comp + '\'' +
-            ", group='" + group + '\'' +
+          //  ", group='" + group + '\'' +
             ", addrr='" + addrr + '\'' +
             ", phonenum1='" + phonenum1 + '\'' +
             ", phonenum2='" + phonenum2 + '\'' +
@@ -225,6 +231,11 @@ public class ContactData {
   @Override
   public int hashCode() {
     return Objects.hash(id, username, middle, lastname, comp, addrr, phonenum1, phonenum2, phonenum3, email1, email2, email3);
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }
 
