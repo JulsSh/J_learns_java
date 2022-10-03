@@ -99,7 +99,7 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact) {
     initContactCreation();
-    fillContactDetails(contact, true);
+    fillContactDetails(contact, false);
     submitContactCreation();
     homePage();
   }
