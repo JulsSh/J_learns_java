@@ -44,4 +44,12 @@ public Groups groups() {
     session.close();
     return new Contacts(result);
   }
+  public int freshContact(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ContactData outcome = (ContactData) session.createQuery( "from ContactData where deprecated = '0000-00-00'" ).list().get(0);
+    session.getTransaction().commit();
+    session.close();
+    return outcome.getId();
+  }
 }

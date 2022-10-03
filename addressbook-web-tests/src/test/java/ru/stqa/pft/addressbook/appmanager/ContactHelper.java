@@ -41,11 +41,11 @@ public class ContactHelper extends HelperBase {
     if (CreateGroup) {
       if(contactData.getGroups().size()>0){
         Assert.assertTrue(contactData.getGroups().size()==1);
-        new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroups().iterator().next().getGroupName());
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getGroupName());
       }
 
     } else {
-      Assert.assertFalse(isElementPresent(By.name("new group")));
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
     //new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
   }
