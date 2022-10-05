@@ -11,9 +11,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@XStreamAlias("contact")
 @Entity
 @Table(name="addressbook")
+@XStreamAlias("contact")
 
 public class ContactData {
   @XStreamOmitField

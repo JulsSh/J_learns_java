@@ -37,4 +37,13 @@ public class Groups extends ForwardingSet<GroupData> {
     groups.remove(group);
     return groups;
   }
+
+  public boolean isPresent(GroupData group){
+    for (GroupData thisGroup: delegate){
+      if (thisGroup.equals(group)){
+        return true;
+      }
+    }
+    return false;
+  }
 }

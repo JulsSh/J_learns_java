@@ -19,3 +19,5 @@ addressbook-web-tests/test-§{bySecond}.log
 addressbook-web-tests/test-§{bySecond}.log
 *.log
 *.log
+*.log
+*.log

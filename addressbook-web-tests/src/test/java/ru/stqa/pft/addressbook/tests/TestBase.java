@@ -73,7 +73,7 @@ public class TestBase {
   public void verifyContactsListInUi(){
 
     if(Boolean.getBoolean( "verifyUI")){
-      Contacts dbContacts =app.db().contacts();
+      Contacts dbContacts =app.db().contact();
       Contacts uiContacts =app.contact().all();
       assertThat(uiContacts, equalTo(dbContacts.stream().map((c) -> new ContactData()
               .withId(c.getId()).withUsername(c.getUsername()).withMiddle(c.getMiddle()).withLastname(c.getLastname())

@@ -10,9 +10,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@XStreamAlias("group")
 @Entity
 @Table(name="group_list")
+@XStreamAlias("group")
 
 public class GroupData {
   @XStreamOmitField
@@ -34,14 +34,9 @@ public class GroupData {
   @Type(type="text")
   private  String groupFooter;
 
-  @ManyToMany(mappedBy = "groups")
-
-
+  @ManyToMany(fetch=FetchType.EAGER, mappedBy = "groups")
   private Set<ContactData> contacts =new HashSet<ContactData>();
 
-  public Contacts attacheGroups () {
-        return new Contacts(contacts);
-  }
 
   public GroupData withId(int id) {
     this.id=id;
@@ -60,6 +55,13 @@ public class GroupData {
   public GroupData withFooter(String groupFooter) {
     this.groupFooter = groupFooter;
      return this;
+  }
+
+  public Contacts getContacts(){
+    return new Contacts(contacts);
+  }
+  public Contacts attacheGroups () {
+    return new Contacts(contacts);
   }
 
 
@@ -102,6 +104,7 @@ public class GroupData {
             ", groupFooter='" + groupFooter + '\'' +
             '}';
   }
+
 
 }
 
