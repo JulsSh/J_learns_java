@@ -1,4 +1,4 @@
-package ru.stqa.pft.mantis.appmanager;
+package ru.stqa.pft.mantis.ManagerApp;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -41,6 +41,14 @@ private final Properties properties;
 
   public void stop() {
    wd.quit();
+  }
+
+  public  HttpSession newSession(){
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+   return properties.getProperty(key);
   }
 }
 
