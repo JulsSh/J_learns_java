@@ -2,8 +2,11 @@ package ru.stqa.pft.mantis.ManagerApp;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -14,11 +17,11 @@ import java.util.List;
 
 
 public class HttpSession {
-  private ClosableHttpClient httpclient;
-    private ApplicationManager app;
-    public HttpSession(ru.stqa.pft.mantis.ManagerApp.ApplicationManager app){
-      this.app=app;
-      httpclient=HttpSession.custom().setRedirectStrategy(new LaxRedirectStrategy().build());
+  private CloseableHttpClient httpclient;
+  private ApplicationManager app;
+  public HttpSession(ru.stqa.pft.mantis.ManagerApp.ApplicationManager app){
+    this.app=app;
+    httpclient= HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
 
   }
   public boolean login(String username, String password) throws IOException {
@@ -29,21 +32,21 @@ public class HttpSession {
     params.add(new BasicNameValuePair("secure_session", "on"));
     params.add(new BasicNameValuePair("return", "index.php"));
     post.setEntity(new UrlEncodedFormEntity(params));
-    ClosableHttpResponse response= httpclient.execute(post);
+    CloseableHttpResponse response= httpclient.execute(post);
     String body = getTextFrom(response);
     return body.contains(String.format("<span class=\"italic\">s%</span>", username));
 
   }
-  private String geTextFrom(ClosableHttpResponse response)  throws IOException{
-      try {
-        return EntityUtils.toString(response.getEntity());
-              }finally{
-        response.close();
-      }
+  private String getTextFrom(CloseableHttpResponse response)  throws IOException{
+    try {
+      return EntityUtils.toString(response.getEntity());
+    }finally{
+      response.close();
+    }
   }
   public boolean isLogggedInAs(String username) throws IOException {
-    HttpGet get=new HttpPostGet(app.getProperty("web.baseURL")+"/index.php");
-    ClosableHttpResponse response= httpclient.execute(get);
+    HttpGet get=new HttpGet(app.getProperty("web.baseURL")+"/index.php");
+    CloseableHttpResponse response= httpclient.execute(get);
     String body = getTextFrom(response);
     return body.contains(String.format("<span class=\"italic\">s%</span>", username));
 
