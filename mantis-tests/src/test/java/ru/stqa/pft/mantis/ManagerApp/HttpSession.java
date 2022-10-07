@@ -1,14 +1,24 @@
 package ru.stqa.pft.mantis.ManagerApp;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.LaxRedirectStrategy;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class HttpSession {
   private ClosableHttpClient httpclient;
     private ApplicationManager app;
     public HttpSession(ru.stqa.pft.mantis.ManagerApp.ApplicationManager app){
       this.app=app;
-      httpclient=HttpSession.custom().setRedirectStrategy(new LaxRedirectStrategy().build();
+      httpclient=HttpSession.custom().setRedirectStrategy(new LaxRedirectStrategy().build());
 
   }
   public boolean login(String username, String password) throws IOException {
