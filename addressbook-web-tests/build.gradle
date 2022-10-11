@@ -17,7 +17,7 @@ dependencies {
     implementation 'org.hibernate:hibernate-core:5.6.11.Final'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
-
+    implementation 'hu.blackbelt.bundles.subethasmtp:org.subethamail.subethasmtp:3.1.7_1'
 }
 task testGroups(type: Test) {
     useTestNG {
