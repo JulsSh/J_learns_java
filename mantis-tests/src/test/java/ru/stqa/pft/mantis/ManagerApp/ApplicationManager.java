@@ -82,5 +82,8 @@ public FtpHelper ftp(){
     }
     return mailHelper;
   }
-}
+  public void login(String user, String password) {
+
+  }
+  }
 
