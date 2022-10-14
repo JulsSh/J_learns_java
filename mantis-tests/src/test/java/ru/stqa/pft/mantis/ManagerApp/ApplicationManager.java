@@ -12,13 +12,15 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
+public class ApplicationManager<options, firefoxOptions, profile> {
   private final Properties properties;
   WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private DbHelper dbHelper;
+  private ResetPasswordHelper resetPasswordHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -26,21 +28,20 @@ public class ApplicationManager {
   }
 
   public void init() throws IOException {
-    String target=System.getProperty("target", "local");
+    String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
 
 
   }
 
   public void stop() {
-    if(wd!=null){
+    if (wd != null) {
       wd.quit();
     }
 
   }
 
-  public HttpSession newSession(){
+  public HttpSession newSession() {
     return new HttpSession(this);
   }
 
@@ -48,21 +49,22 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
-  public RegistrationHelper registraion() {
-    if(registrationHelper==null){
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
       registrationHelper = new RegistrationHelper(this);
     }
     return registrationHelper;
   }
 
-public FtpHelper ftp(){
-    if(ftp==null){
-      ftp=new FtpHelper(this);
+  public FtpHelper ftp() {
+    if (ftp == null) {
+      ftp = new FtpHelper(this);
     }
     return ftp;
-}
+  }
+
   public WebDriver getDriver() {
-    if(wd==null){
+    if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals(BrowserType.CHROME)) {
@@ -71,19 +73,34 @@ public FtpHelper ftp(){
         wd = new EdgeDriver();
       }
       wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-      wd.get(properties.getProperty("web.baseURL"));
+      wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
   }
-  public MailHelper mail(){
 
-    if(mailHelper ==null){
-      mailHelper=new MailHelper(this);
+
+  public MailHelper mail() {
+
+    if (mailHelper == null) {
+      mailHelper = new MailHelper(this);
     }
     return mailHelper;
   }
-  public void login(String user, String password) {
 
+  public DbHelper db() {
+
+    if (dbHelper == null) {
+      dbHelper = new DbHelper(this);
+    }
+    return dbHelper;
   }
+
+  public ResetPasswordHelper resetPassword() {
+
+    if (resetPasswordHelper == null) {
+      resetPasswordHelper = new ResetPasswordHelper(this);
+    }
+    return resetPasswordHelper;
   }
+}
 

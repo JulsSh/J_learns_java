@@ -27,13 +27,13 @@ public class RedistrationTest extends TestBase {
     String email = String.format("user%s@localhost.localdomain", now);
     String user =String.format("user%s",now) ;
     String password = "password";
-    app.registraion().start(user, email);
+    app.registration().start(user, email);
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.registraion().finish(confirmationLink, password);
+    app.registration().finish(confirmationLink, password);
     assertTrue( app.newSession().login(user, password));
 
-    app.registraion().start("user2", "user1@localhost.localdomain");
+    app.registration().start("user2", "user1@localhost.localdomain");
     app.mail().waitForMail(2, 10000);
 
   }
