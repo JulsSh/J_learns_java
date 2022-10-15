@@ -7,19 +7,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Users extends ForwardingSet<UserData> {
-  private Set<UserData> delegete;
+  private Set<UserData> delegate;
 
   public Users(Users users) {
-    this.delegete = new HashSet<UserData>(users.delegete);
+    this.delegate = new HashSet<UserData>(users.delegate);
   }
 
   public Users(Collection<UserData> users) {
-    this.delegete = new HashSet<UserData>(users);
+    this.delegate = new HashSet<UserData>(users);
   }
 
   @Override
   protected Set delegate() {
-    return delegete;
+    return delegate;
   }
 
   public Users withAdded(UserData user) {
@@ -35,7 +35,7 @@ public class Users extends ForwardingSet<UserData> {
   }
 
   public boolean isPresented(UserData user) {
-    for (UserData thisUser : delegete) {
+    for (UserData thisUser : delegate) {
       if (thisUser.equals(user)) {
         return true;
       }

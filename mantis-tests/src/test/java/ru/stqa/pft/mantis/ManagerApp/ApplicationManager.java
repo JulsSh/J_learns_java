@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager<options, firefoxOptions, profile> {
+public class ApplicationManager {
   private final Properties properties;
-  WebDriver wd;
+  private WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
