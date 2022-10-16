@@ -19,7 +19,7 @@ import java.util.List;
 public class HttpSession {
   private CloseableHttpClient httpclient;
   private ApplicationManager app;
-  public HttpSession(ru.stqa.pft.mantis.ManagerApp.ApplicationManager app){
+  public HttpSession(ApplicationManager app){
     this.app=app;
     httpclient= HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
 

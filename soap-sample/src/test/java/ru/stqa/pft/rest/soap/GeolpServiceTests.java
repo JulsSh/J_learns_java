@@ -1,4 +1,4 @@
-package ru.stqa.pft.soap;
+package ru.stqa.pft.rest.soap;
 
 import com.lavasoft.GeoIPService;
 import org.testng.annotations.Test;
