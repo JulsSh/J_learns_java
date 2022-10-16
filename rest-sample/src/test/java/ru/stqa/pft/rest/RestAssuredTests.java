@@ -28,7 +28,7 @@ public class RestAssuredTests {
     oldIssues.add(newIssue.withId(issueId));
     Assert.assertEquals(newIssues, oldIssues);
   }
-  
+
   private Set<Issue> getIssues() throws IOException {
 
     String json= RestAssured.get("https://bugify.stqa.ru/api/issues.json").asString();
