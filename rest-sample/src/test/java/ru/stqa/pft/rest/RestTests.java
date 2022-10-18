@@ -11,7 +11,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -34,7 +33,7 @@ public class RestTests extends TestBase{
             .returnContent().asString();
    JsonElement parsed= new JsonParser().parse(json);
    JsonElement issues= parsed.getAsJsonObject().get("issues");
-       return new Gson().fromJson(issues, new TypeToken<List<Issue>>(){}.getType());
+       return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
   }
 
   private Executor getExecutor() {

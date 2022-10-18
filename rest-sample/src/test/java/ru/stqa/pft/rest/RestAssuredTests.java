@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 public class RestAssuredTests {
@@ -34,7 +33,7 @@ public class RestAssuredTests {
     String json= RestAssured.get("https://bugify.stqa.ru/api/issues.json").asString();
    JsonElement parsed= new JsonParser().parse(json);
    JsonElement issues= parsed.getAsJsonObject().get("issues");
-       return new Gson().fromJson(issues, new TypeToken<List<Issue>>(){}.getType());
+       return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
   }
 
   private Executor getExecutor() {
