@@ -51,7 +51,7 @@ public class GroupCreationTests extends TestBase {
   }
 
 
-  @Test(dataProvider = "validGroupsFromJson")
+  @Test(dataProvider = "validGroups")
 
   public void testGroupCreation(GroupData group) throws Exception {
     app.goTo().groupPage();
