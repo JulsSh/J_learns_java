@@ -8,4 +8,43 @@ dependencies {
 
     implementation 'org.testng:testng:7.6.1'
     implementation 'org.seleniumhq.selenium:selenium-java:4.4.0'
+    implementation 'org.hamcrest:hamcrest:2.2'
+    implementation 'com.beust:jcommander:1.82'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.19'
+    implementation 'io.github.jglrxavpok.hephaistos:gson:2.5.1'
+    implementation 'ch.qos.logback:logback-classic:1.4.1'
+    implementation 'mysql:mysql-connector-java:8.0.30'
+    implementation 'org.hibernate:hibernate-core:5.6.11.Final'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+    implementation 'hu.blackbelt.bundles.subethasmtp:org.subethamail.subethasmtp:3.1.7_1'
+    implementation("com.google.code.gson:gson:2.9.1")
+}
+task testGroups(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-groups.xml'
+    }
+    if (project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')){
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+}
+task testContacts(type: Test) {
+    useTestNG{
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')){
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
 }
